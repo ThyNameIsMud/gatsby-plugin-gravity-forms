@@ -25,18 +25,9 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
     formState: { errors },
   } = useFormContext();
 
-  // Due to checkboxes and radios are seen in GraphQL each choice is given an
-  // error parameter. However in practice only one error matters.
-  // So we check to see if one error exists across all choices.
-  const error = errors[name]?.filter(({ message }) => {
-    if (message) {
-      return true;
-    }
-  })?.[0];
-
   return (
     <InputWrapper
-      errors={error}
+      errors={errors?.[name]}
       inputData={fieldData}
       labelFor={name}
       {...wrapProps}
@@ -55,9 +46,9 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
                 )}
                 defaultChecked={isSelected}
                 id={`${name}_${choiceID}`}
-                name={`${name}${type === "checkbox" ? `.${choiceID}` : ""}`}
+                name={name}
                 {...register(
-                  `${name}${type === "checkbox" ? `.${choiceID}` : ""}`,
+                  name,
                   {
                     required: isRequired && strings.errors.required,
                   }

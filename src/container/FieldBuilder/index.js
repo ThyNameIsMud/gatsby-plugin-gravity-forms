@@ -32,9 +32,21 @@ const FieldBuilder = ({
       type,
       size,
       visibility,
+      layoutGridColumnSpan
     } = field;
 
     const isHiddenField = type === "HIDDEN";
+
+    let width = 'full';
+    if (layoutGridColumnSpan === 6) {
+        width = 'half';
+    }
+    if (layoutGridColumnSpan === 4) {
+        width = 'third';
+    }
+    if (layoutGridColumnSpan === 3) {
+        width = 'quarter';
+    }
 
     let inputWrapperClass = classnames(
       "gfield",
@@ -57,7 +69,8 @@ const FieldBuilder = ({
       },
       `gfield_visibility_${
         valueToLowerCase ? "hidden" : valueToLowerCase(visibility)
-      }`
+      }`,
+      `gfield_${width}`
     );
 
     const wrapId = `field_${databaseId}_${id}`;

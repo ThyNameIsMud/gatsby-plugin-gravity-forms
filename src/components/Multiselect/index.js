@@ -59,7 +59,7 @@ Multiselect.propTypes = {
   fieldData: PropTypes.shape({
     cssClass: PropTypes.string,
     id: PropTypes.number,
-    choices: PropTypes.string,
+    choices: PropTypes.arrayOf(PropTypes.shape({isSelected: PropTypes.bool,text: PropTypes.string,value: PropTypes.string})),
     size: PropTypes.string,
     isRequired: PropTypes.bool,
   }),

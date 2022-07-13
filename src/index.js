@@ -176,6 +176,7 @@ const GravityFormForm = ({
             onSubmit={handleSubmit(onSubmitCallback)}
           >
             {generalError && <FormGeneralError errorCode={generalError} />}
+            <div className="gform_heading"><h2 className="gform_title">{ title }</h2></div>
             <div className="gform_body">
               <ul
                 className={classnames(
@@ -277,6 +278,7 @@ export const GravityFormFields = graphql`
         ...SelectField
         ...TextAreaField
         ...TextField
+        ...FileField
       }
     }
   }

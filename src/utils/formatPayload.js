@@ -68,6 +68,16 @@ const formatter = ({ id, fieldResponse, type, inputs }) => {
       return {
         values: fieldResponse,
       };
+    case "FILEUPLOAD": {
+      return {
+        fileUploadValues: Array.from(fieldResponse).map(({ name, size, type }) => ({
+            name,
+            size,
+            type,
+            tmp_name: `${process.env.GATSBY_CMS_TMP_PATH}/${name}`
+        }))
+      }
+    }
     case "POSTCATEGORY":
       return {
         values: fieldResponse,

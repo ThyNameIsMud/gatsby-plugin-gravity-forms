@@ -30,7 +30,7 @@ const Input = ({ defaultValue, fieldData, name, ...wrapProps }) => {
   } = fieldData;
 
   const regex = inputMaskValue ? new RegExp(inputMaskValue) : false;
-  let inputType = standardType(type);
+  let inputType = standardType(type.toLowerCase());
 
   const {
     register,

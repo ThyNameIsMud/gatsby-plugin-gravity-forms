@@ -11,7 +11,7 @@
  * https://github.com/harness-software/wp-graphql-gravity-forms/blob/develop/docs/submitting-forms.md
  */
 
-const formatter = ({ id, fieldResponse, type, inputs }) => {
+const formatter = ({ id, fieldResponse, type, inputs, clientData }) => {
   switch (type) {
     case "ADDRESS":
       return {
@@ -41,11 +41,14 @@ const formatter = ({ id, fieldResponse, type, inputs }) => {
         checkboxValues: selectedChoices,
       };
     case "EMAIL":
-      // UPDATE TO INCLUDE CONFIRMATION VALUE IF REQUIRED.
+      const emailValues = {
+          value: fieldResponse
+      };
+      if (clientData[`input_${id}_confirmation`]) {
+          emailValues.confirmationValue = clientData[`input_${id}_confirmation`];
+      }
       return {
-        emailValues: {
-          value: fieldResponse,
-        },
+        emailValues
       };
     case "CONSENT":
     case "DATE":
@@ -105,7 +108,7 @@ export default ({ serverData, clientData }) => {
       if (fieldResponse) {
         return {
           id,
-          ...formatter({ id, fieldResponse, type, inputs }),
+          ...formatter({ id, fieldResponse, type, inputs, clientData }),
         };
       }
     })

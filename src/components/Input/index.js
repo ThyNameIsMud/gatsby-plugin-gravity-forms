@@ -154,38 +154,6 @@ export const DateField = graphql`
   }
 `;
 
-export const EmailField = graphql`
-  fragment EmailField on WpEmailField {
-    adminLabel
-    canPrepopulate
-    conditionalLogic {
-      ...ConditionalLogic
-    }
-    cssClass
-    description
-    descriptionPlacement
-    errorMessage
-    hasAutocomplete
-    hasEmailConfirmation
-    inputs {
-      autocompleteAttribute
-      customLabel
-      defaultValue
-      id
-      label
-      name
-      placeholder
-    }
-    isRequired
-    label
-    placeholder
-    shouldAllowDuplicates
-    size
-    subLabelPlacement
-    value
-  }
-`;
-
 export const HiddenField = graphql`
   fragment HiddenField on WpHiddenField {
     canPrepopulate

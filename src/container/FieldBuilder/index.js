@@ -9,6 +9,7 @@ import Select from "../../components/Select";
 import SelectorList from "../../components/SelectorList";
 import Textarea from "../../components/Textarea";
 import FileUpload from "../../components/FileUpload";
+import Email from "../../components/Email";
 import { valueToLowerCase } from "../../utils/helpers";
 import { islabelHidden } from "../../utils/inputSettings";
 
@@ -110,12 +111,23 @@ const FieldBuilder = ({
       // Start with the standard fields
       case "TEXT":
       case "NUMBER":
-      case "EMAIL":
       case "HIDDEN":
       case "DATE":
       case "PHONE":
         return (
           <Input
+            fieldData={field}
+            key={id}
+            gfId={id}
+            name={inputName}
+            defaultValue={defaultValue}
+            wrapClassName={inputWrapperClass}
+            wrapId={wrapId}
+          />
+        );
+      case "EMAIL":
+        return (
+          <Email
             fieldData={field}
             key={id}
             gfId={id}

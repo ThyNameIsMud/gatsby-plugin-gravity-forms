@@ -57,7 +57,6 @@ const GravityFormForm = ({
   const haveFieldErrors = Boolean(submittionData?.submitGfForm?.errors?.length);
 
   const wasSuccessfullySubmitted = hasBeenSubmitted && !haveFieldErrors;
-
   // Pull in form functions
   const methods = useForm();
   const {
@@ -94,10 +93,11 @@ const GravityFormForm = ({
             fieldValues: formRes,
           },
         })
-          .then(({ data: { submitGfForm: errors } }) => {
+          .then(({ data: { submitGfForm: { errors, confirmation } } }) => {
             // Success if no errors returned.
             if (!Boolean(errors?.length)) {
               successCallback({
+                confirmation,
                 data: formRes,
                 reset,
               });
@@ -134,13 +134,13 @@ const GravityFormForm = ({
       }
     });
 
-    if (confirmation.type !== "PAGE") {
+    if (confirmation.type == "PAGE") {
       // TODO: Somehow need to get the page URL. Query currently
       // returns the page ID for the page redirect.
       navigate(confirmation?.url);
     }
 
-    if (confirmation.type !== "REDIRECT") {
+    if (confirmation.type == "REDIRECT") {
       // TODO: Check that the redirect is internal.
       // If not, use window.location to direct to external URL.
       navigate(confirmation?.url);

@@ -7,6 +7,11 @@ export default gql`
         id
         message
       }
+      confirmation {
+        type
+        message
+        url
+      }
     }
   }
 `;

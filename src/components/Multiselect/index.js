@@ -8,7 +8,6 @@ import { valueToLowerCase } from "../../utils/helpers";
 
 const Multiselect = ({ fieldData, name, ...wrapProps }) => {
   const { choices, cssClass, id, isRequired, size } = fieldData;
-  const options = JSON.parse(choices);
 
   const {
     register,
@@ -25,6 +24,7 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
       <select
         //TODO: GF uses select2 library and classes, need to figure out how to handle here if we're mimicing their functionality
         className={classnames(
+            "gravityform__field__input",
           "gravityform__field__input__select",
           "gfield_select",
           cssClass,
@@ -37,7 +37,7 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
           required: isRequired,
         })}
       >
-        {options.map(({ isSelected, text, value }, index) => {
+        {choices.map(({ isSelected, text, value }, index) => {
           return (
             <option
               defaultValue={isSelected}

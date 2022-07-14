@@ -90,6 +90,7 @@ const GravityFormForm = ({
         submitForm({
           variables: {
             databaseId,
+            clientMutationId: `gf-submission-${Date.now()}`,
             fieldValues: formRes,
           },
         })

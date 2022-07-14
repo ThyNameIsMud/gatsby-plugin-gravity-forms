@@ -73,12 +73,7 @@ const formatter = ({ id, fieldResponse, type, inputs, clientData }) => {
       };
     case "FILEUPLOAD": {
       return {
-        fileUploadValues: Array.from(fieldResponse).map(({ name, size, type }) => ({
-            name,
-            size,
-            type,
-            tmp_name: `${process.env.GATSBY_CMS_TMP_PATH}/${name}`
-        }))
+        fileUploadValues: fieldResponse
       }
     }
     case "POSTCATEGORY":
@@ -106,10 +101,20 @@ export default ({ serverData, clientData }) => {
 
       // If so, lets re-format and add to array.
       if (fieldResponse) {
-        return {
-          id,
-          ...formatter({ id, fieldResponse, type, inputs, clientData }),
-        };
+        //File upload field will always have a FileList as its value, should only POST it if there's files inside
+        if (type === 'FILEUPLOAD') {
+            if (fieldResponse.length) {
+                return {
+                    id,
+                    ...formatter({ id, fieldResponse, type, inputs, clientData }),
+                };
+            }
+        } else {
+            return {
+                id,
+                ...formatter({ id, fieldResponse, type, inputs, clientData }),
+            };
+        }
       }
     })
     .filter(Boolean);

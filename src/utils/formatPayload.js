@@ -22,6 +22,10 @@ const formatter = ({ id, fieldResponse, type, inputs, clientData }) => {
         value: fieldResponse,
       };
     case "CHECKBOX":
+      //A single checkbox will be a string
+      if (typeof fieldResponse === 'string') {
+          fieldResponse = [fieldResponse];
+      }
       // Loop through all Gravity Form Checkbox choices.
       const selectedChoices = inputs
         .map(({ id, label, name }) => {

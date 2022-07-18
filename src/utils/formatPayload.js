@@ -67,6 +67,7 @@ const formatter = ({ id, fieldResponse, type, inputs, clientData }) => {
     case "SIGNATURE":
     case "TEXTAREA":
     case "TEXT":
+    case "TIME":
     case "WEBSITE":
       return {
         value: fieldResponse,

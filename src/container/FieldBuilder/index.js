@@ -12,6 +12,7 @@ import FileUpload from "../../components/FileUpload";
 import Email from "../../components/Email";
 import { valueToLowerCase } from "../../utils/helpers";
 import { islabelHidden } from "../../utils/inputSettings";
+import Time from "gatsby-plugin-gravity-forms/src/components/Time";
 
 const FieldBuilder = ({
   databaseId,
@@ -135,6 +136,18 @@ const FieldBuilder = ({
             defaultValue={defaultValue}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
+          />
+        );
+      case "TIME":
+        return (
+          <Time
+              fieldData={field}
+              key={id}
+              gfId={id}
+              name={inputName}
+              defaultValue={defaultValue}
+              wrapClassName={inputWrapperClass}
+              wrapId={wrapId}
           />
         );
       case "TEXTAREA":

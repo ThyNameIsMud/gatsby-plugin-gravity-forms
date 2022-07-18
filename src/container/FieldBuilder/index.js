@@ -177,6 +177,7 @@ const FieldBuilder = ({
         return (
           <Multiselect
             fieldData={field}
+            defaultValue={defaultValue}
             key={id}
             gfId={id}
             name={inputName}

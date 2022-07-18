@@ -6,13 +6,15 @@ import { useFormContext } from "react-hook-form";
 import InputWrapper from "../../components/InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
 
-const Multiselect = ({ fieldData, name, ...wrapProps }) => {
+const Multiselect = ({ fieldData, defaultValue, name, ...wrapProps }) => {
   const { choices, cssClass, id, isRequired, size } = fieldData;
-
   const {
     register,
     formState: { errors },
   } = useFormContext();
+
+  const selectedOptions = choices.filter(({ isSelected, value }) => isSelected || defaultValue === value)
+                            .map(({ value }) => value);
 
   return (
     <InputWrapper
@@ -33,6 +35,7 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
         id={name}
         multiple={true}
         name={name}
+        defaultValue={selectedOptions}
         {...register(name, {
           required: isRequired,
         })}
@@ -40,7 +43,6 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
         {choices.map(({ isSelected, text, value }, index) => {
           return (
             <option
-              defaultValue={isSelected}
               key={`${id}_${index}`}
               value={value}
             >

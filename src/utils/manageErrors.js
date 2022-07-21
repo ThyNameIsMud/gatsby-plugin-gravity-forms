@@ -4,9 +4,8 @@
  */
 
 export const handleGravityFormsValidationErrors = (data, setError) => {
-    Object.keys(data).forEach(function(key) {
-        const id = key.replace('.', '_')
+    data.forEach(({ id, message } ) => {
         const fieldId = `input_${id}`
-        setError(fieldId, 'gf_validation', data[key])
-    })
+        setError(fieldId, { type: 'gf_validation', message });
+    });
 }

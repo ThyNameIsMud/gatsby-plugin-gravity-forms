@@ -50,6 +50,9 @@ const FieldBuilder = ({
     if (layoutGridColumnSpan === 3) {
         width = 'quarter';
     }
+    if (type === 'EMAIL' && field.hasEmailConfirmation) {
+        width = 'half';
+    }
 
     let inputWrapperClass = classnames(
       "gfield",

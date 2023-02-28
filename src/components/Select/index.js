@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
@@ -25,7 +25,7 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
         aria-invalid={errors}
         aria-required={isRequired}
         //TODO: GF uses select2 library and classes, need to figure out how to handle here if we're mimicing their functionality
-        className={classnames(
+        className={clsx(
           "gravityform__field__input",
           "gravityform__field__input__select",
           "gfield_select",

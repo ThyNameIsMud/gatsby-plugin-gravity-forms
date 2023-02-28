@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import PropTypes from "prop-types";
 import React, { useEffect, useState, useRef } from "react";
 import { graphql, navigate } from "gatsby";
@@ -180,7 +180,7 @@ const GravityFormForm = ({
             <div className="gform_heading"><h2 className="gform_title">{ title }</h2></div>
             <div className="gform_body">
               <ul
-                className={classnames(
+                className={clsx(
                   "gform_fields",
                   {
                     [`form_sublabel_${valueToLowerCase(

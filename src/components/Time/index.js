@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import React, { useEffect } from "react";
@@ -83,7 +83,7 @@ const Time = ({ fieldData, name, ...wrapProps }) => {
                             key={`time-input-${i}`}
                             aria-invalid={Boolean(errors?.[name])}
                             aria-required={isRequired}
-                            className={classnames(
+                            className={clsx(
                                 "gravityform__field__input",
                                     `gravityform__field__input__${valueToLowerCase(type)}`,
                             )}
@@ -104,7 +104,7 @@ const Time = ({ fieldData, name, ...wrapProps }) => {
                 ) :  timeFormat === 'H12' ? (
                         <select
                             key={`time-input-${i}`}
-                            className={classnames(
+                            className={clsx(
                                 "gravityform__field__input",
                                 `gravityform__field__input__${valueToLowerCase(type)}`,
                             )}

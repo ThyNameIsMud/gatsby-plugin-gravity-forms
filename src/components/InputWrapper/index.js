@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import PropTypes from "prop-types";
 import React from "react";
 import { valueToLowerCase } from "../../utils/helpers";
@@ -26,7 +26,7 @@ const InputWrapper = ({
 
   return (
     <li
-      className={classnames(
+      className={clsx(
         wrapClassName,
         errors?.type && "gravityform__field--error",
         cssClass

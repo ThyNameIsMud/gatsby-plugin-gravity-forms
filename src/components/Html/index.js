@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
@@ -13,7 +13,7 @@ const Html = ({ fieldData, name, wrapClassName, ...wrapProps }) => {
       {...wrapProps}
       inputData={fieldData}
       labelFor={name}
-      wrapClassName={classnames(
+      wrapClassName={clsx(
         wrapClassName,
         "gfield_html",
         "gfield_html_formatted",

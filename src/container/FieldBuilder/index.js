@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import React from "react";
 
 import Captcha from "../../components/Captcha";
@@ -54,7 +54,7 @@ const FieldBuilder = ({
         width = 'half';
     }
 
-    let inputWrapperClass = classnames(
+    let inputWrapperClass = clsx(
       "gfield",
       "gravityform__field",
       "gravityform__field__" + valueToLowerCase(type),

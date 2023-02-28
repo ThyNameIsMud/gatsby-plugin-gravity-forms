@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import React from "react";
@@ -33,7 +33,7 @@ const FileUpload = ({ defaultValue, fieldData, name, ...wrapProps }) => {
             <input
                 aria-invalid={Boolean(errors?.[name])}
                 aria-required={isRequired}
-                className={classnames(
+                className={clsx(
                     "gravityform__field__input",
                     `gravityform__field__input__fileupload`,
                     cssClass,

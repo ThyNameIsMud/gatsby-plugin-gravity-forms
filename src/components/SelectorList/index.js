@@ -1,4 +1,4 @@
-import classnames from "classnames";
+import clsx from "clsx";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
@@ -38,7 +38,7 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
           return (
             <li key={`${name}-${index + 1}`}>
               <input
-                className={classnames(
+                className={clsx(
                   `gravityform__field__input__${type}`,
                   `gravityform__field__input__${type}--` + choiceID,
                   cssClass,

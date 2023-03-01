@@ -166,8 +166,9 @@ const GravityFormForm = ({
 
     if (confirmation.type == "MESSAGE") {
       return (
-        <div className="gform_confirmation_wrapper">
+        <div className="gform_confirmation_wrapper" aria-labelledby={`gform_confirmation_${databaseId}`} role="alert">
           <div
+            id={`gform_confirmation_${databaseId}`}
             className="gform_confirmation_message"
             /* eslint-disable react/no-danger */
             dangerouslySetInnerHTML={{ __html: confirmation?.message }}

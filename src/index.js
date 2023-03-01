@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import React, { useEffect, useState, useRef } from "react";
+import { keys, find, reduce } from "lodash";
 import { graphql, navigate } from "gatsby";
 import { useMutation } from "@apollo/client";
 import { useForm, FormProvider } from "react-hook-form";
@@ -28,6 +29,7 @@ const GravityFormForm = ({
   presetValues,
   successCallback,
   errorCallback,
+  validationCallback
 }) => {
   const preOnSubmit = useRef();
 
@@ -68,6 +70,21 @@ const GravityFormForm = ({
   } = methods;
 
   const [generalError, setGeneralError] = useState("");
+
+  useEffect(() => {
+    if (errors && keys(errors).length) {
+      const errorsWithLabels = reduce(errors, (result, error, inputName) => {
+        result[inputName] = error;
+        const field = find(formFields.nodes, (field) => inputName === `input_${field.id}`);
+        // Send field label with errors for more useful error updates
+        if (field) {
+          result[inputName].label = field.label;
+        }
+        return result;
+      }, {});
+      validationCallback(errorsWithLabels);
+    }
+  }, [errors, formFields])
 
   const onSubmitCallback = async () => {
     // Make sure we are not already waiting for a response
@@ -235,6 +252,7 @@ GravityFormForm.propTypes = {
 };
 
 GravityFormForm.defaultProps = {
+  validationCallback: () => {},
   errorCallback: () => {},
   successCallback: () => {},
   presetValues: {},

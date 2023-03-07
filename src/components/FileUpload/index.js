@@ -79,6 +79,7 @@ export const FileField = graphql`
     errorMessage
     isRequired
     label
+    labelPlacement
     maxFileSize
     maxFiles
     allowedExtensions

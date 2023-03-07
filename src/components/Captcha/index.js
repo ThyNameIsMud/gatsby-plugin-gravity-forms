@@ -113,6 +113,7 @@ export const CaptchaField = graphql`
     descriptionPlacement
     errorMessage
     label
+    labelPlacement
     simpleCaptchaBackgroundColor
     simpleCaptchaFontColor
     simpleCaptchaSize

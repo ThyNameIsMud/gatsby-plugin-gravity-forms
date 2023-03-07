@@ -113,6 +113,7 @@ export const TextField = graphql`
     isPasswordInput
     isRequired
     label
+    labelPlacement
     maxLength
     placeholder
     shouldAllowDuplicates
@@ -147,6 +148,7 @@ export const DateField = graphql`
     }
     isRequired
     label
+    labelPlacement
     placeholder
     shouldAllowDuplicates
     subLabelPlacement
@@ -184,6 +186,7 @@ export const NumberField = graphql`
     isCalculation
     isRequired
     label
+    labelPlacement
     numberFormat
     placeholder
     rangeMax
@@ -211,6 +214,7 @@ export const PhoneField = graphql`
     inputName
     isRequired
     label
+    labelPlacement
     phoneFormat
     placeholder
     shouldAllowDuplicates

@@ -91,6 +91,7 @@ export const SelectField = graphql`
     inputName
     isRequired
     label
+    labelPlacement
     placeholder
     shouldAllowDuplicates
     size

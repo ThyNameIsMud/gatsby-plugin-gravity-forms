@@ -155,6 +155,7 @@ export const TimeField = graphql`
         }
         isRequired
         label
+        labelPlacement
         timeFormat
         value
     }

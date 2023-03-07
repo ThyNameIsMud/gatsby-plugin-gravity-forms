@@ -11,6 +11,7 @@ const InputWrapper = ({
     cssClass,
     description,
     descriptionPlacement,
+    labelPlacement,
     isRequired,
     label,
     maxLength,
@@ -33,7 +34,8 @@ const InputWrapper = ({
       )}
       id={wrapId}
     >
-      {type !== 'HTML' &&
+      {type !== 'HTML'
+      && labelPlacement !== 'HIDDEN' &&
         <label
             className="gravityform__label gfield_label"
             htmlFor={labelFor}

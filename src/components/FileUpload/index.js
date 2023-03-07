@@ -15,7 +15,8 @@ const FileUpload = ({ defaultValue, fieldData, name, ...wrapProps }) => {
         size,
         type,
         allowedExtensions,
-        maxFileSize
+        maxFileSize,
+        canAcceptMultipleFiles
     } = fieldData;
 
     const {
@@ -42,6 +43,7 @@ const FileUpload = ({ defaultValue, fieldData, name, ...wrapProps }) => {
                 name={name}
                 accept={allowedExtensions?.join(',')}
                 type='file'
+                multiple={canAcceptMultipleFiles}
                 {...register(name, { required: isRequired && strings.errors.required })}
             />
         </InputWrapper>

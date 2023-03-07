@@ -145,6 +145,7 @@ export const EmailField = graphql`
     }
     isRequired
     label
+    labelPlacement
     placeholder
     shouldAllowDuplicates
     size

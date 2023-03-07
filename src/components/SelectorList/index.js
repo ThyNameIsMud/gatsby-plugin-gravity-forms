@@ -114,6 +114,7 @@ export const CheckboxField = graphql`
     inputName
     isRequired
     label
+    labelPlacement
   }
 `;
 
@@ -139,6 +140,7 @@ export const RadioField = graphql`
     inputName
     isRequired
     label
+    labelPlacement
     shouldAllowDuplicates
     value
   }

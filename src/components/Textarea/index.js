@@ -110,6 +110,7 @@ export const TextAreaField = graphql`
     inputName
     isRequired
     label
+    labelPlacement
     maxLength
     shouldAllowDuplicates
     placeholder

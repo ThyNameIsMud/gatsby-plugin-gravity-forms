@@ -90,6 +90,7 @@ export const MultiSelectField = graphql`
     inputName
     isRequired
     label
+    labelPlacement
     size
     values
   }

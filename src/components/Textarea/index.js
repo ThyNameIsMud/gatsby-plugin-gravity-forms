@@ -7,7 +7,7 @@ import InputWrapper from "../../components/InputWrapper";
 import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 
-const Textarea = ({ defaultValue, fieldData, name, wrapClassName, wrapId }) => {
+const Textarea = ({ defaultValue, fieldData, name, wrapClassName, wrapId, readonly }) => {
   const {
     cssClass,
     inputMaskValue,
@@ -15,7 +15,7 @@ const Textarea = ({ defaultValue, fieldData, name, wrapClassName, wrapId }) => {
     maxLength,
     placeholder,
     size,
-    type: typeUpper,
+    type: typeUpper
   } = fieldData;
 
   const type = valueToLowerCase(typeUpper);
@@ -64,6 +64,7 @@ const Textarea = ({ defaultValue, fieldData, name, wrapClassName, wrapId }) => {
           },
         })}
         type={type}
+        readOnly={readonly}
       />
     </InputWrapper>
   );

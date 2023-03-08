@@ -18,7 +18,7 @@ const standardType = (type) => {
   }
 };
 
-const Input = ({ defaultValue, fieldData, name, ...wrapProps }) => {
+const Input = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) => {
   const {
     cssClass,
     inputMaskValue,
@@ -58,6 +58,7 @@ const Input = ({ defaultValue, fieldData, name, ...wrapProps }) => {
         maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
         name={name}
         placeholder={placeholder}
+        readOnly={readonly}
         {...register(name, {
           required: isRequired && strings.errors.required,
           maxlength: {

@@ -8,7 +8,7 @@ import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
 
-const Email = ({ defaultValue, fieldData, name, ...wrapProps }) => {
+const Email = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) => {
     const {
         cssClass,
         inputMaskValue,
@@ -58,6 +58,7 @@ const Email = ({ defaultValue, fieldData, name, ...wrapProps }) => {
                     maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                     name={name}
                     placeholder={placeholder}
+                    readOnly={readonly}
                     {...register(name, {
                         required: isRequired && strings.errors.required,
                         maxlength: {
@@ -94,6 +95,7 @@ const Email = ({ defaultValue, fieldData, name, ...wrapProps }) => {
                     maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                     name={`${name}_confirmation`}
                     placeholder={placeholder}
+                    readOnly={readonly}
                     {...register(`${name}_confirmation`, {
                         required: isRequired && strings.errors.required,
                         maxlength: {

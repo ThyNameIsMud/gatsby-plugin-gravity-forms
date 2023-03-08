@@ -26,6 +26,7 @@ const FieldBuilder = ({
   return formFields.map((field) => {
     // Set the wrapper classes
     const {
+      readonly,
       databaseId: fieldId,
       captchaTheme,
       descriptionPlacement,
@@ -127,6 +128,7 @@ const FieldBuilder = ({
             defaultValue={defaultValue}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
+            readonly={readonly}
           />
         );
       case "EMAIL":
@@ -139,6 +141,7 @@ const FieldBuilder = ({
             defaultValue={defaultValue}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
+            readonly={readonly}
           />
         );
       case "TIME":
@@ -151,6 +154,7 @@ const FieldBuilder = ({
               defaultValue={defaultValue}
               wrapClassName={inputWrapperClass}
               wrapId={wrapId}
+              readonly={readonly}
           />
         );
       case "TEXTAREA":
@@ -163,6 +167,7 @@ const FieldBuilder = ({
             name={inputName}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
+            readonly={readonly}
           />
         );
       case "SELECT":
@@ -210,6 +215,7 @@ const FieldBuilder = ({
                   defaultValue={defaultValue}
                   wrapClassName={inputWrapperClass}
                   wrapId={wrapId}
+                  readonly={readonly}
               />
           )
 

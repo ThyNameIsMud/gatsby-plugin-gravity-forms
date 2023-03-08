@@ -10,12 +10,11 @@ import { valueToLowerCase } from "../../utils/helpers";
 // TODO: Enable Select All Choice
 const SelectorList = ({ fieldData, name, ...wrapProps }) => {
   const {
-    id,
     choices,
     cssClass,
     isRequired,
     size,
-    type: typeUpper,
+    type: typeUpper
   } = fieldData;
 
   const type = valueToLowerCase(typeUpper);

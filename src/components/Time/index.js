@@ -10,7 +10,7 @@ import Input from "gatsby-plugin-gravity-forms/src/components/Input";
 
 const timeinputMapping = [ 'hh', 'mm', 'ampm' ];
 
-const Time = ({ fieldData, name, ...wrapProps }) => {
+const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
     const {
         cssClass,
         inputs,
@@ -94,6 +94,7 @@ const Time = ({ fieldData, name, ...wrapProps }) => {
                                 required: isRequired && strings.errors.required
                             })}
                             type='number'
+                            readOnly={readonly}
                             min={i === 0 ? getHoursMin() : 0}
                             max={i === 0 ? getHoursMax() : 59}
                         />
@@ -110,6 +111,7 @@ const Time = ({ fieldData, name, ...wrapProps }) => {
                             )}
                             id={`${name}_${timeinputMapping[i]}`}
                             name={`${name}_${timeinputMapping[i]}`}
+                            readOnly={readonly}
                             {...register(`${name}_${timeinputMapping[i]}`, {
                                 required: isRequired && strings.errors.required
                             })}

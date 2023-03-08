@@ -151,7 +151,9 @@ export const TimeField = graphql`
         descriptionPlacement
         errorMessage
         inputs {
-            placeholder
+            ... on WpTimeInputProperty {
+                placeholder
+            }
         }
         isRequired
         label

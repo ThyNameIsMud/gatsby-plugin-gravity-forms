@@ -90,7 +90,7 @@ const Email = ({ defaultValue, fieldData, name, ...wrapProps }) => {
                         cssClass,
                         valueToLowerCase(size)
                     )}
-                    id={name}
+                    id={`${name}_confirmation`}
                     maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                     name={`${name}_confirmation`}
                     placeholder={placeholder}
@@ -134,14 +134,16 @@ export const EmailField = graphql`
     hasAutocomplete
     hasEmailConfirmation
     inputs {
-      autocompleteAttribute
-      customLabel
-      defaultValue
-      id
-      label
-      customLabel
-      name
-      placeholder
+        ... on WpEmailInputProperty {
+            autocompleteAttribute
+            customLabel
+            defaultValue
+            id
+            label
+            customLabel
+            name
+            placeholder
+        }
     }
     isRequired
     label

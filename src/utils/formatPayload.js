@@ -11,11 +11,11 @@
  * https://github.com/harness-software/wp-graphql-gravity-forms/blob/develop/docs/submitting-forms.md
  */
 
-const formatter = ({ id, fieldResponse, type, inputs, clientData }) => {
+const formatter = ({ databaseId, fieldResponse, type, inputs, clientData }) => {
   switch (type) {
     case "ADDRESS":
       return {
-        addressValues: value,
+        addressValues: fieldResponse,
       };
     case "CAPTCHA":
       return {
@@ -48,8 +48,8 @@ const formatter = ({ id, fieldResponse, type, inputs, clientData }) => {
       const emailValues = {
           value: fieldResponse
       };
-      if (clientData[`input_${id}_confirmation`]) {
-          emailValues.confirmationValue = clientData[`input_${id}_confirmation`];
+      if (clientData[`input_${databaseId}_confirmation`]) {
+          emailValues.confirmationValue = clientData[`input_${databaseId}_confirmation`];
       }
       return {
         emailValues
@@ -100,9 +100,9 @@ const formatter = ({ id, fieldResponse, type, inputs, clientData }) => {
 
 export default ({ serverData, clientData }) => {
   const formattedData = serverData
-    .map(({ type, inputs, id }) => {
+    .map(({ type, inputs, databaseId }) => {
       // Does this particular field have a response?
-      const fieldResponse = clientData[`input_${id}`];
+      const fieldResponse = clientData[`input_${databaseId}`];
 
       // If so, lets re-format and add to array.
       if (fieldResponse) {
@@ -110,14 +110,14 @@ export default ({ serverData, clientData }) => {
         if (type === 'FILEUPLOAD') {
             if (fieldResponse.length) {
                 return {
-                    id,
-                    ...formatter({ id, fieldResponse, type, inputs, clientData }),
+                  id: databaseId,
+                    ...formatter({ databaseId, fieldResponse, type, inputs, clientData }),
                 };
             }
         } else {
             return {
-                id,
-                ...formatter({ id, fieldResponse, type, inputs, clientData }),
+              id: databaseId,
+                ...formatter({ databaseId, fieldResponse, type, inputs, clientData }),
             };
         }
       }

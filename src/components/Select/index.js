@@ -73,9 +73,11 @@ export const SelectField = graphql`
     autocompleteAttribute
     canPrepopulate
     choices {
-      isSelected
-      text
-      value
+      ... on WpSelectFieldChoice {
+        isSelected
+        text
+        value
+      }
     }
     conditionalLogic {
       ...ConditionalLogic

@@ -88,14 +88,12 @@ export const CheckboxField = graphql`
   fragment CheckboxField on WpCheckboxField {
     adminLabel
     canPrepopulate
-    checkboxValues {
-      inputId
-      value
-    }
     choices {
-      isSelected
-      text
-      value
+      ... on WpCheckboxFieldChoice {
+        isSelected
+        text
+        value
+      }
     }
     conditionalLogic {
       ...ConditionalLogic
@@ -107,9 +105,11 @@ export const CheckboxField = graphql`
     hasChoiceValue
     hasSelectAll
     inputs {
-      id
-      label
-      name
+      ... on WpCheckboxInputProperty {
+        id
+        label
+        name
+      }
     }
     inputName
     isRequired
@@ -123,10 +123,12 @@ export const RadioField = graphql`
     adminLabel
     canPrepopulate
     choices {
-      isOtherChoice
-      isSelected
-      text
-      value
+      ... on WpRadioFieldChoice {
+        isOtherChoice
+        isSelected
+        text
+        value
+      }
     }
     conditionalLogic {
       ...ConditionalLogic

@@ -75,7 +75,7 @@ const GravityFormForm = ({
     if (errors && keys(errors).length) {
       const errorsWithLabels = reduce(errors, (result, error, inputName) => {
         result[inputName] = error;
-        const field = find(formFields.nodes, (field) => inputName === `input_${field.id}`);
+        const field = find(formFields.nodes, (field) => inputName === `input_${field.databaseId}`);
         // Send field label with errors for more useful error updates
         if (field) {
           result[inputName].label = field.label;
@@ -278,7 +278,7 @@ export const GravityFormFields = graphql`
     formFields {
       nodes {
         displayOnly
-        id
+        databaseId
         inputType
         layoutGridColumnSpan
         layoutSpacerGridColumnSpan

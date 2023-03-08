@@ -140,11 +140,13 @@ export const DateField = graphql`
     errorMessage
     inputName
     inputs {
-      customLabel
-      defaultValue
-      id
-      label
-      placeholder
+      ... on WpDateInputProperty {
+        customLabel
+        defaultValue
+        id
+        label
+        placeholder
+      }
     }
     isRequired
     label

@@ -74,9 +74,11 @@ export const MultiSelectField = graphql`
     adminLabel
     canPrepopulate
     choices {
-      isSelected
-      text
-      value
+      ... on WpMultiSelectFieldChoice {
+        isSelected
+        text
+        value
+      }
     }
     conditionalLogic {
       ...ConditionalLogic

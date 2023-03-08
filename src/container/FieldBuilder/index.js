@@ -26,7 +26,7 @@ const FieldBuilder = ({
   return formFields.map((field) => {
     // Set the wrapper classes
     const {
-      id,
+      databaseId: fieldId,
       captchaTheme,
       descriptionPlacement,
       isRequired,
@@ -79,10 +79,10 @@ const FieldBuilder = ({
       `gfield_${width}`
     );
 
-    const wrapId = `field_${databaseId}_${id}`;
+    const wrapId = `field_${databaseId}_${fieldId}`;
 
     //TODO: Should this match GF version "input_form.id_input.id"
-    const inputName = `input_${field.id}`;
+    const inputName = `input_${fieldId}`;
 
     const defaultValue = presetValues?.[inputName] || field?.defaultValue || "";
 
@@ -93,8 +93,8 @@ const FieldBuilder = ({
           <Captcha
             captchaTheme={captchaTheme}
             fieldData={field}
-            gfId={id}
-            key={id}
+            gfId={fieldId}
+            key={fieldId}
             name={inputName}
             ref={preOnSubmit}
             settings={settings?.recaptcha}
@@ -105,8 +105,8 @@ const FieldBuilder = ({
         return (
           <Html
             fieldData={field}
-            key={id}
-            gfId={id}
+            key={fieldId}
+            gfId={fieldId}
             name={inputName}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
@@ -121,8 +121,8 @@ const FieldBuilder = ({
         return (
           <Input
             fieldData={field}
-            key={id}
-            gfId={id}
+            key={fieldId}
+            gfId={fieldId}
             name={inputName}
             defaultValue={defaultValue}
             wrapClassName={inputWrapperClass}
@@ -133,8 +133,8 @@ const FieldBuilder = ({
         return (
           <Email
             fieldData={field}
-            key={id}
-            gfId={id}
+            key={fieldId}
+            gfId={fieldId}
             name={inputName}
             defaultValue={defaultValue}
             wrapClassName={inputWrapperClass}
@@ -145,8 +145,8 @@ const FieldBuilder = ({
         return (
           <Time
               fieldData={field}
-              key={id}
-              gfId={id}
+              key={fieldId}
+              gfId={fieldId}
               name={inputName}
               defaultValue={defaultValue}
               wrapClassName={inputWrapperClass}
@@ -158,8 +158,8 @@ const FieldBuilder = ({
           <Textarea
             fieldData={field}
             defaultValue={defaultValue}
-            key={id}
-            gfId={id}
+            key={fieldId}
+            gfId={fieldId}
             name={inputName}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
@@ -169,8 +169,8 @@ const FieldBuilder = ({
         return (
           <Select
             fieldData={field}
-            key={id}
-            gfId={id}
+            key={fieldId}
+            gfId={fieldId}
             name={inputName}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
@@ -181,8 +181,8 @@ const FieldBuilder = ({
           <Multiselect
             fieldData={field}
             defaultValue={defaultValue}
-            key={id}
-            gfId={id}
+            key={fieldId}
+            gfId={fieldId}
             name={inputName}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
@@ -193,8 +193,8 @@ const FieldBuilder = ({
         return (
           <SelectorList
             fieldData={field}
-            key={id}
-            gfId={id}
+            key={fieldId}
+            gfId={fieldId}
             name={inputName}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
@@ -204,8 +204,8 @@ const FieldBuilder = ({
           return (
               <FileUpload
                   fieldData={field}
-                  key={id}
-                  gfId={id}
+                  key={fieldId}
+                  gfId={fieldId}
                   name={inputName}
                   defaultValue={defaultValue}
                   wrapClassName={inputWrapperClass}

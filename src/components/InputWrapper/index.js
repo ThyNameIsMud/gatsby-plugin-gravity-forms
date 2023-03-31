@@ -35,6 +35,7 @@ const InputWrapper = ({
       id={wrapId}
     >
       {type !== 'HTML'
+      && type !== 'HIDDEN'
       && labelPlacement !== 'HIDDEN' &&
         <label
             className="gravityform__label gfield_label"

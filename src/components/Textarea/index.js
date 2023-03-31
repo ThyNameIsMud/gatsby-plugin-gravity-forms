@@ -7,7 +7,7 @@ import InputWrapper from "../../components/InputWrapper";
 import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 
-const Textarea = ({ defaultValue, fieldData, name, wrapClassName, wrapId, readonly }) => {
+const Textarea = ({ fieldData, name, wrapClassName, wrapId, readonly }) => {
   const {
     cssClass,
     inputMaskValue,
@@ -45,7 +45,6 @@ const Textarea = ({ defaultValue, fieldData, name, wrapClassName, wrapId, readon
           valueToLowerCase(size),
           "textarea"
         )}
-        defaultValue={defaultValue}
         id={name}
         maxLength={maxLength > 0 ? maxLength : undefined}
         name={name}
@@ -82,7 +81,6 @@ Textarea.propTypes = {
     maxLength: PropTypes.number,
     placeholder: PropTypes.string,
     isRequired: PropTypes.bool,
-    defaultValue: PropTypes.string,
     type: PropTypes.string,
     size: PropTypes.string,
   }),

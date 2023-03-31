@@ -8,7 +8,7 @@ import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
 
-const Email = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) => {
+const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
     const {
         cssClass,
         inputMaskValue,
@@ -53,7 +53,6 @@ const Email = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) => {
                         cssClass,
                         valueToLowerCase(size)
                     )}
-                    defaultValue={defaultValue}
                     id={name}
                     maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                     name={name}

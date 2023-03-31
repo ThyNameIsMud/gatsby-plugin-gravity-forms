@@ -8,7 +8,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
 import Input from "gatsby-plugin-gravity-forms/src/components/Input";
 
-const FileUpload = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) => {
+const FileUpload = ({ fieldData, name, readonly, ...wrapProps }) => {
     const {
         cssClass,
         isRequired,
@@ -54,7 +54,6 @@ const FileUpload = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) =
 export default FileUpload;
 
 FileUpload.propTypes = {
-    defaultValue: PropTypes.string,
     fieldData: PropTypes.shape({
         cssClass: PropTypes.string,
         isRequired: PropTypes.bool,

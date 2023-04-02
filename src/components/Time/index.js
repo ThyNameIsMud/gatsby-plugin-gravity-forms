@@ -128,7 +128,6 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
 export default Time;
 
 Time.propTypes = {
-    defaultValue: PropTypes.string,
     fieldData: PropTypes.shape({
         cssClass: PropTypes.string,
         isRequired: PropTypes.bool,

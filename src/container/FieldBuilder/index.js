@@ -19,7 +19,6 @@ const FieldBuilder = ({
   formFields,
   formLoading,
   preOnSubmit,
-  presetValues,
   settings,
 }) => {
   // Loop through fields and create
@@ -85,8 +84,6 @@ const FieldBuilder = ({
     //TODO: Should this match GF version "input_form.id_input.id"
     const inputName = `input_${fieldId}`;
 
-    const defaultValue = presetValues?.[inputName] || field?.defaultValue || "";
-
     switch (field.type) {
       // Add note for unsupported captcha field
       case "CAPTCHA":
@@ -125,7 +122,6 @@ const FieldBuilder = ({
             key={fieldId}
             gfId={fieldId}
             name={inputName}
-            defaultValue={defaultValue}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
             readonly={readonly}
@@ -138,7 +134,6 @@ const FieldBuilder = ({
             key={fieldId}
             gfId={fieldId}
             name={inputName}
-            defaultValue={defaultValue}
             wrapClassName={inputWrapperClass}
             wrapId={wrapId}
             readonly={readonly}
@@ -151,7 +146,6 @@ const FieldBuilder = ({
               key={fieldId}
               gfId={fieldId}
               name={inputName}
-              defaultValue={defaultValue}
               wrapClassName={inputWrapperClass}
               wrapId={wrapId}
               readonly={readonly}
@@ -161,7 +155,6 @@ const FieldBuilder = ({
         return (
           <Textarea
             fieldData={field}
-            defaultValue={defaultValue}
             key={fieldId}
             gfId={fieldId}
             name={inputName}
@@ -185,7 +178,6 @@ const FieldBuilder = ({
         return (
           <Multiselect
             fieldData={field}
-            defaultValue={defaultValue}
             key={fieldId}
             gfId={fieldId}
             name={inputName}
@@ -212,7 +204,6 @@ const FieldBuilder = ({
                   key={fieldId}
                   gfId={fieldId}
                   name={inputName}
-                  defaultValue={defaultValue}
                   wrapClassName={inputWrapperClass}
                   wrapId={wrapId}
                   readonly={readonly}

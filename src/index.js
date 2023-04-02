@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { keys, find, reduce } from "lodash";
 import { graphql, navigate } from "gatsby";
 import { useMutation } from "@apollo/client";
@@ -59,8 +59,22 @@ const GravityFormForm = ({
   const haveFieldErrors = Boolean(submittionData?.submitGfForm?.errors?.length);
 
   const wasSuccessfullySubmitted = hasBeenSubmitted && !haveFieldErrors;
+
+  const defaultValues = useMemo(() =>
+      reduce(formFields?.nodes, (result, { databaseId }) => {
+        const inputName = `input_${databaseId}`;
+        if (presetValues[inputName]) {
+          result[inputName] = presetValues[inputName];
+        } else {
+          result[inputName] = null;
+        }
+        return result;
+      }, {}), [formFields, presetValues]);
+
   // Pull in form functions
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues
+  });
   const {
     handleSubmit,
     setError,
@@ -68,6 +82,10 @@ const GravityFormForm = ({
     getValues,
     formState: { errors },
   } = methods;
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [defaultValues]);
 
   const [generalError, setGeneralError] = useState("");
 
@@ -216,7 +234,6 @@ const GravityFormForm = ({
                   formFields={formFields.nodes}
                   labelPlacement={labelPlacement}
                   preOnSubmit={preOnSubmit}
-                  presetValues={presetValues}
                   settings={settings}
                 />
               </ul>

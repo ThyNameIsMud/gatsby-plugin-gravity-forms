@@ -18,7 +18,7 @@ const standardType = (type) => {
   }
 };
 
-const Input = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) => {
+const Input = ({ fieldData, name, readonly, ...wrapProps }) => {
   const {
     cssClass,
     inputMaskValue,
@@ -53,7 +53,6 @@ const Input = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) => {
           cssClass,
           valueToLowerCase(size)
         )}
-        defaultValue={defaultValue}
         id={name}
         maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
         name={name}
@@ -81,7 +80,6 @@ const Input = ({ defaultValue, fieldData, name, readonly, ...wrapProps }) => {
 export default Input;
 
 Input.propTypes = {
-  defaultValue: PropTypes.string,
   fieldData: PropTypes.shape({
     cssClass: PropTypes.string,
     inputMaskValue: PropTypes.string,

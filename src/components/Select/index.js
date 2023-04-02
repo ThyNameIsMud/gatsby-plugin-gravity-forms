@@ -38,10 +38,9 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
           required: isRequired && "This field is required",
         })}
       >
-        {choices.map(({ isSelected, text, value }, index) => {
+        {choices.map(({ text, value }, index) => {
           return (
             <option
-              defaultValue={isSelected}
               key={`${name}-${index}`}
               value={value}
             >

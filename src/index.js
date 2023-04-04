@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import { keys, find, reduce } from "lodash";
+import { keys, find, reduce, map } from "lodash";
 import { graphql, navigate } from "gatsby";
 import { useMutation } from "@apollo/client";
 import { useForm, FormProvider } from "react-hook-form";
@@ -17,7 +17,7 @@ import {
 } from "./utils/manageFormData";
 import submitMutation from "./submitMutation";
 import formatPayload from "./utils/formatPayload";
-import { valueToLowerCase } from "./utils/helpers";
+import {getMatchesConditionalLogic, valueToLowerCase} from "./utils/helpers";
 
 /**
  * Component to take Gravity Form graphQL data and turn into
@@ -161,6 +161,11 @@ const GravityFormForm = ({
       // First check if there is a custom confirmation
       // that is not the default.
       if (el.isActive && !el.isDefault) {
+        if (el.conditionalLogic) {
+          const { rules, logicType } = el.conditionalLogic;
+          const values = getValues(map(rules, ({ fieldId }) => `input_${fieldId}`));
+          return getMatchesConditionalLogic(values, rules, logicType);
+        }
         return true;
       }
 

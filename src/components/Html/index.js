@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import InputWrapper from "../../components/InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const Html = ({ fieldData, name, wrapClassName, ...wrapProps }) => {
   const { content, cssClass, type } = fieldData;
@@ -27,7 +28,7 @@ const Html = ({ fieldData, name, wrapClassName, ...wrapProps }) => {
   );
 };
 
-export default Html;
+export default withConditionalLogic(Html);
 
 Html.propTypes = {
   fieldData: PropTypes.shape({

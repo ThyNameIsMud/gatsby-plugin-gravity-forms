@@ -6,6 +6,7 @@ import { useFormContext } from "react-hook-form";
 import InputWrapper from "../../components/InputWrapper";
 import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const Textarea = ({ fieldData, name, wrapClassName, wrapId, readonly }) => {
   const {
@@ -61,6 +62,7 @@ const Textarea = ({ fieldData, name, wrapClassName, wrapId, readonly }) => {
             value: regex,
             message: regex && strings.errors.pattern,
           },
+          shouldUnregister: true
         })}
         type={type}
         readOnly={readonly}
@@ -69,7 +71,7 @@ const Textarea = ({ fieldData, name, wrapClassName, wrapId, readonly }) => {
   );
 };
 
-export default Textarea;
+export default withConditionalLogic(Textarea);
 
 Textarea.propTypes = {
   fieldData: PropTypes.shape({
@@ -87,6 +89,7 @@ Textarea.propTypes = {
   name: PropTypes.string,
   wrapClassName: PropTypes.string,
   wrapId: PropTypes.string,
+  readonly: PropTypes.bool
 };
 
 export const TextAreaField = graphql`
@@ -94,12 +97,7 @@ export const TextAreaField = graphql`
     adminLabel
     canPrepopulate
     conditionalLogic {
-      actionType
-      rules {
-        fieldId
-        operator
-        value
-      }
+      ...ConditionalLogic
     }
     cssClass
     defaultValue

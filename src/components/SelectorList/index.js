@@ -6,6 +6,7 @@ import { useFormContext } from "react-hook-form";
 import strings from "../../utils/strings";
 import InputWrapper from "../InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 // TODO: Enable Select All Choice
 const SelectorList = ({ fieldData, name, ...wrapProps }) => {
@@ -50,6 +51,7 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
                   name,
                   {
                     required: isRequired && strings.errors.required,
+                    shouldUnregister: true
                   }
                 )}
                 type={type}
@@ -68,7 +70,7 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
   );
 };
 
-export default SelectorList;
+export default withConditionalLogic(SelectorList);
 
 SelectorList.propTypes = {
   fieldData: PropTypes.shape({

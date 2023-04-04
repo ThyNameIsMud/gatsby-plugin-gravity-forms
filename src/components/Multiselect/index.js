@@ -5,6 +5,7 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import InputWrapper from "../../components/InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const Multiselect = ({ fieldData, name, ...wrapProps }) => {
   const { choices, cssClass, id, isRequired, size } = fieldData;
@@ -34,6 +35,7 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
         name={name}
         {...register(name, {
           required: isRequired,
+          shouldUnregister: true
         })}
       >
         {choices.map(({ isSelected, text, value }, index) => {
@@ -50,8 +52,7 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
     </InputWrapper>
   );
 };
-
-export default Multiselect;
+export default withConditionalLogic(Multiselect);
 
 Multiselect.propTypes = {
   fieldData: PropTypes.shape({

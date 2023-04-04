@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react"
-import { map, each } from "lodash";
+import { map } from "lodash";
 
 import { getMatchesConditionalLogic } from "../utils/helpers";
 import { useFormContext } from "react-hook-form";
@@ -11,7 +11,7 @@ const withConditionalLogic = (Component) => (props) => {
     const [shouldShow, setShouldShow] = useState(!conditionalLogic);
 
     const fieldsToWatch = useMemo(() => (
-        conditionalLogic ? map(conditionalLogic.rules, ({ fieldId}) => `input_${fieldId}`) : null
+        conditionalLogic ? map(conditionalLogic.rules, ({ fieldId }) => `input_${fieldId}`) : null
     ), [conditionalLogic]);
     const valuesToWatch = fieldsToWatch ? watch(fieldsToWatch) : null;
 

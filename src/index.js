@@ -6,6 +6,7 @@ import { graphql, navigate } from "gatsby";
 import { useMutation } from "@apollo/client";
 import { useForm, FormProvider } from "react-hook-form";
 import FormGeneralError from "./components/FormGeneralError";
+import SubmitButton from "./components/SubmitButton";
 import FieldBuilder from "./container/FieldBuilder";
 import {
   handleGravityFormsValidationErrors,
@@ -245,20 +246,11 @@ const GravityFormForm = ({
             </div>
 
             <div className={`gform_footer ${valueToLowerCase(labelPlacement)}`}>
-              <button
-                className="gravityform__button gform_button button"
-                disabled={loading}
-                id={`gform_submit_button_${databaseId}`}
-                type="submit"
-              >
-                {loading ? (
-                  <span className="gravityform__button__loading_span">
-                    Loading
-                  </span>
-                ) : (
-                  submitButton?.text
-                )}
-              </button>
+              <SubmitButton
+                  {...{ loading, databaseId }}
+                  text={submitButton?.text}
+                  fieldData={{...{conditionalLogic: submitButton?.conditionalLogic}}}
+              />
             </div>
           </form>
         </FormProvider>

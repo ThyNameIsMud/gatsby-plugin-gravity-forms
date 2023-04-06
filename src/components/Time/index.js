@@ -6,7 +6,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
-import Input from "gatsby-plugin-gravity-forms/src/components/Input";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const timeinputMapping = [ 'hh', 'mm', 'ampm' ];
 
@@ -18,8 +18,6 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
         timeFormat,
         type
     } = fieldData;
-
-    let inputType = type.toLowerCase();
 
     const {
         register,
@@ -91,7 +89,8 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
                             name={`${name}_${timeinputMapping[i]}`}
                             placeholder={placeholder}
                             {...register(`${name}_${timeinputMapping[i]}`, {
-                                required: isRequired && strings.errors.required
+                                required: isRequired && strings.errors.required,
+                                shouldUnregister: true
                             })}
                             type='number'
                             readOnly={readonly}
@@ -113,7 +112,8 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
                             name={`${name}_${timeinputMapping[i]}`}
                             readOnly={readonly}
                             {...register(`${name}_${timeinputMapping[i]}`, {
-                                required: isRequired && strings.errors.required
+                                required: isRequired && strings.errors.required,
+                                shouldUnregister: true
                             })}
                         >
                             <option>AM</option>
@@ -125,7 +125,7 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
     );
 };
 
-export default Time;
+export default withConditionalLogic(Time);
 
 Time.propTypes = {
     fieldData: PropTypes.shape({
@@ -138,6 +138,7 @@ Time.propTypes = {
     value: PropTypes.string,
     name: PropTypes.string,
     wrapProps: PropTypes.object,
+    readonly: PropTypes.bool
 };
 
 export const TimeField = graphql`

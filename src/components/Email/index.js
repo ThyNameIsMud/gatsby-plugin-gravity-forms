@@ -7,6 +7,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
     const {
@@ -70,6 +71,7 @@ const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
                             value: regex,
                             message: regex && strings.errors.pattern,
                         },
+                        shouldUnregister: true
                     })}
                     type={valueToLowerCase(inputType)}
                 />
@@ -110,6 +112,7 @@ const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
                         validate: {
                             matchEmails: value => (value === emailValue) || 'Emails must match.',
                         },
+                        shouldUnregister: true
                     })}
                     type={valueToLowerCase(inputType)}
                 />
@@ -119,7 +122,28 @@ const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
     );
 };
 
-export default Email;
+export default withConditionalLogic(Email);
+
+Email.propTypes = {
+    fieldData: PropTypes.shape({
+        cssClass: PropTypes.string,
+        inputMaskValue: PropTypes.string,
+        isRequired: PropTypes.bool,
+        maxLength: PropTypes.number,
+        placeholder: PropTypes.string,
+        size: PropTypes.string,
+        type: PropTypes.string,
+        hasEmailConfirmation: PropTypes.bool,
+        inputs: PropTypes.arrayOf(PropTypes.shape({
+            label: PropTypes.string,
+            customLabel: PropTypes.string
+        }))
+    }),
+    name: PropTypes.string,
+    readonly: PropTypes.bool,
+    value: PropTypes.string,
+    wrapProps: PropTypes.object
+}
 
 export const EmailField = graphql`
   fragment EmailField on WpEmailField {

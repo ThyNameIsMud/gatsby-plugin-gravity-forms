@@ -11,6 +11,7 @@ import { useFormContext } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import InputWrapper from "../InputWrapper";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const Captcha = forwardRef(
   ({ captchaTheme, fieldData, name, settings, ...wrapProps }, ref) => {
@@ -83,7 +84,7 @@ const Captcha = forwardRef(
         />
         <input
           name="g-recaptcha-response"
-          {...register(name, {})}
+          {...register(name, {shouldUnregister: true})}
           type="hidden"
         />
       </InputWrapper>
@@ -98,7 +99,7 @@ Captcha.propTypes = {
   wrapClassName: PropTypes.string,
 };
 
-export default Captcha;
+export default withConditionalLogic(Captcha);
 
 export const CaptchaField = graphql`
   fragment CaptchaField on WpCaptchaField {

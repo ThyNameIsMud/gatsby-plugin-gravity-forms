@@ -6,16 +6,14 @@ import { useFormContext } from "react-hook-form";
 import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
-import Input from "gatsby-plugin-gravity-forms/src/components/Input";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const FileUpload = ({ fieldData, name, readonly, ...wrapProps }) => {
     const {
         cssClass,
         isRequired,
         size,
-        type,
         allowedExtensions,
-        maxFileSize,
         canAcceptMultipleFiles
     } = fieldData;
 
@@ -45,13 +43,16 @@ const FileUpload = ({ fieldData, name, readonly, ...wrapProps }) => {
                 type='file'
                 multiple={canAcceptMultipleFiles}
                 readOnly={readonly}
-                {...register(name, { required: isRequired && strings.errors.required })}
+                {...register(name, {
+                    required: isRequired && strings.errors.required,
+                    shouldUnregister: true
+                })}
             />
         </InputWrapper>
     )
-}
+};
 
-export default FileUpload;
+export default withConditionalLogic(FileUpload);
 
 FileUpload.propTypes = {
     fieldData: PropTypes.shape({
@@ -65,6 +66,7 @@ FileUpload.propTypes = {
     value: PropTypes.string,
     name: PropTypes.string,
     wrapProps: PropTypes.object,
+    readonly: PropTypes.bool
 };
 
 export const FileField = graphql`

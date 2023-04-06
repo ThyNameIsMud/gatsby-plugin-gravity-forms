@@ -6,6 +6,7 @@ import { useFormContext } from "react-hook-form";
 import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
+import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const standardType = (type) => {
   switch (type) {
@@ -70,6 +71,7 @@ const Input = ({ fieldData, name, readonly, ...wrapProps }) => {
             value: regex,
             message: regex && strings.errors.pattern,
           },
+          shouldUnregister: true
         })}
         type={valueToLowerCase(inputType)}
       />
@@ -77,7 +79,7 @@ const Input = ({ fieldData, name, readonly, ...wrapProps }) => {
   );
 };
 
-export default Input;
+export default withConditionalLogic(Input);
 
 Input.propTypes = {
   fieldData: PropTypes.shape({
@@ -92,6 +94,7 @@ Input.propTypes = {
   value: PropTypes.string,
   name: PropTypes.string,
   wrapProps: PropTypes.object,
+  readonly: PropTypes.bool
 };
 
 export const TextField = graphql`

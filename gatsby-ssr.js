@@ -1,5 +1,5 @@
 import React from "react";
-import fetch from "cross-fetch";
+import "isomorphic-fetch";
 import {
     ApolloClient,
     ApolloProvider,
@@ -15,8 +15,7 @@ export const wrapRootElement = ({ element }, { url }) => {
 
     const client = new ApolloClient({
         link: new createUploadLink({
-            uri: url,
-            fetch
+            uri: url
         }),
         cache: new InMemoryCache()
     });

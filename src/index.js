@@ -81,7 +81,7 @@ const GravityFormForm = ({
     setError,
     reset,
     getValues,
-    formState: { errors },
+    formState,
   } = methods;
 
   useEffect(() => {
@@ -91,6 +91,7 @@ const GravityFormForm = ({
   const [generalError, setGeneralError] = useState("");
 
   useEffect(() => {
+    const { errors } = formState;
     if (errors && keys(errors).length) {
       const errorsWithLabels = reduce(errors, (result, error, inputName) => {
         result[inputName] = error;
@@ -103,7 +104,7 @@ const GravityFormForm = ({
       }, {});
       validationCallback(errorsWithLabels);
     }
-  }, [errors, formFields])
+  }, [formState, formFields])
 
   const onSubmitCallback = async () => {
     // Make sure we are not already waiting for a response

@@ -62,10 +62,12 @@ const GravityFormForm = ({
   const wasSuccessfullySubmitted = hasBeenSubmitted && !haveFieldErrors;
 
   const defaultValues = useMemo(() =>
-      reduce(formFields?.nodes, (result, { databaseId }) => {
+      reduce(formFields?.nodes, (result, { databaseId, defaultValue }) => {
         const inputName = `input_${databaseId}`;
         if (presetValues[inputName]) {
           result[inputName] = presetValues[inputName];
+        } else if (defaultValue) {
+            result[inputName] = defaultValue;
         } else {
           result[inputName] = null;
         }

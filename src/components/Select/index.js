@@ -8,7 +8,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const Select = ({ fieldData, name, id, ...wrapProps }) => {
-  const { choices, cssClass, isRequired, size } = fieldData;
+  const { choices, cssClass, isRequired, size, placeholder } = fieldData;
 
   const {
     register,
@@ -40,6 +40,11 @@ const Select = ({ fieldData, name, id, ...wrapProps }) => {
           shouldUnregister: true
         })}
       >
+        {placeholder && (
+          <option value="" disabled>
+              {placeholder}
+          </option>
+        )}
         {choices.map(({ text, value }, index) => {
           return (
             <option

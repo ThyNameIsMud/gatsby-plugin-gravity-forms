@@ -110,6 +110,7 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
                             )}
                             id={`${name}_${timeinputMapping[i]}`}
                             name={`${name}_${timeinputMapping[i]}`}
+                            aria-invalid={Boolean(errors?.[name])}
                             readOnly={readonly}
                             {...register(`${name}_${timeinputMapping[i]}`, {
                                 required: isRequired && strings.errors.required,

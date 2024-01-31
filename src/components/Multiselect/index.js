@@ -30,6 +30,7 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
           cssClass,
           valueToLowerCase(size)
         )}
+        aria-invalid={Boolean(errors?.[name])}
         id={name}
         multiple={true}
         name={name}

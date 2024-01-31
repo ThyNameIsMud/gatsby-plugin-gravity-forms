@@ -23,7 +23,7 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
       {...wrapProps}
     >
       <select
-        aria-invalid={errors}
+        aria-invalid={Boolean(errors?.[name])}
         aria-required={isRequired}
         //TODO: GF uses select2 library and classes, need to figure out how to handle here if we're mimicing their functionality
         className={clsx(

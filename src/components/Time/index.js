@@ -10,7 +10,7 @@ import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 const timeinputMapping = [ 'hh', 'mm', 'ampm' ];
 
-const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
+const Time = ({ fieldData, name, id, readonly, ...wrapProps }) => {
     const {
         cssClass,
         inputs,
@@ -62,7 +62,7 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
         <InputWrapper
             errors={errors?.[name] || {}}
             inputData={fieldData}
-            labelFor={name}
+            labelFor={id}
             {...wrapProps}
         >
         <input type='hidden'
@@ -85,7 +85,7 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
                                 "gravityform__field__input",
                                     `gravityform__field__input__${valueToLowerCase(type)}`,
                             )}
-                            id={`${name}_${timeinputMapping[i]}`}
+                            id={`${id}_${timeinputMapping[i]}`}
                             name={`${name}_${timeinputMapping[i]}`}
                             placeholder={placeholder}
                             {...register(`${name}_${timeinputMapping[i]}`, {
@@ -108,7 +108,7 @@ const Time = ({ fieldData, name, readonly, ...wrapProps }) => {
                                 "gravityform__field__input",
                                 `gravityform__field__input__${valueToLowerCase(type)}`,
                             )}
-                            id={`${name}_${timeinputMapping[i]}`}
+                            id={`${id}_${timeinputMapping[i]}`}
                             name={`${name}_${timeinputMapping[i]}`}
                             aria-invalid={Boolean(errors?.[name])}
                             readOnly={readonly}
@@ -138,6 +138,7 @@ Time.propTypes = {
     }),
     value: PropTypes.string,
     name: PropTypes.string,
+    id: PropTypes.string,
     wrapProps: PropTypes.object,
     readonly: PropTypes.bool
 };

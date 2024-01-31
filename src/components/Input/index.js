@@ -19,7 +19,7 @@ const standardType = (type) => {
   }
 };
 
-const Input = ({ fieldData, name, readonly, ...wrapProps }) => {
+const Input = ({ fieldData, name, id, readonly, ...wrapProps }) => {
   const {
     cssClass,
     inputMaskValue,
@@ -42,7 +42,7 @@ const Input = ({ fieldData, name, readonly, ...wrapProps }) => {
     <InputWrapper
       errors={errors?.[name] || {}}
       inputData={fieldData}
-      labelFor={name}
+      labelFor={id}
       {...wrapProps}
     >
       <input
@@ -54,7 +54,7 @@ const Input = ({ fieldData, name, readonly, ...wrapProps }) => {
           cssClass,
           valueToLowerCase(size)
         )}
-        id={name}
+        id={id}
         maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
         name={name}
         placeholder={placeholder}
@@ -94,7 +94,8 @@ Input.propTypes = {
   value: PropTypes.string,
   name: PropTypes.string,
   wrapProps: PropTypes.object,
-  readonly: PropTypes.bool
+  readonly: PropTypes.bool,
+  id: PropTypes.string,
 };
 
 export const TextField = graphql`

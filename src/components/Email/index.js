@@ -9,7 +9,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
-const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
+const Email = ({ fieldData, name, id, readonly, ...wrapProps }) => {
     const {
         cssClass,
         inputMaskValue,
@@ -42,7 +42,7 @@ const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
             <InputWrapper
                 errors={errors?.[name] || {}}
                 inputData={fieldData}
-                labelFor={name}
+                labelFor={id}
                 {...wrapProps}
             >
                 <input
@@ -54,7 +54,7 @@ const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
                         cssClass,
                         valueToLowerCase(size)
                     )}
-                    id={name}
+                    id={id}
                     maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                     name={name}
                     placeholder={placeholder}
@@ -80,7 +80,7 @@ const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
             <InputWrapper
                 errors={errors?.[`${name}_confirmation`] || {}}
                 inputData={confirmFieldData}
-                labelFor={`${name}_confirmation`}
+                labelFor={`${id}_confirmation`}
                 {...wrapProps}
             >
                 <input
@@ -92,7 +92,7 @@ const Email = ({ fieldData, name, readonly, ...wrapProps }) => {
                         cssClass,
                         valueToLowerCase(size)
                     )}
-                    id={`${name}_confirmation`}
+                    id={`${id}_confirmation`}
                     maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                     name={`${name}_confirmation`}
                     placeholder={placeholder}
@@ -142,7 +142,8 @@ Email.propTypes = {
     name: PropTypes.string,
     readonly: PropTypes.bool,
     value: PropTypes.string,
-    wrapProps: PropTypes.object
+    wrapProps: PropTypes.object,
+    id: PropTypes.string
 }
 
 export const EmailField = graphql`

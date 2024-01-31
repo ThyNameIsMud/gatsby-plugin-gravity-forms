@@ -7,7 +7,7 @@ import InputWrapper from "../../components/InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
-const Select = ({ fieldData, name, ...wrapProps }) => {
+const Select = ({ fieldData, name, id, ...wrapProps }) => {
   const { choices, cssClass, isRequired, size } = fieldData;
 
   const {
@@ -19,7 +19,7 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
     <InputWrapper
       errors={errors?.[name] || {}}
       inputData={fieldData}
-      labelFor={name}
+      labelFor={id}
       {...wrapProps}
     >
       <select
@@ -33,7 +33,7 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
           cssClass,
           valueToLowerCase(size)
         )}
-        id={name}
+        id={id}
         name={name}
         {...register(name, {
           required: isRequired && "This field is required",
@@ -65,6 +65,7 @@ Select.propTypes = {
     size: PropTypes.string,
   }),
   register: PropTypes.func,
+  id: PropTypes.string,
   wrapProps: PropTypes.object,
 };
 

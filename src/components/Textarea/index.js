@@ -8,7 +8,7 @@ import strings from "../../utils/strings";
 import { valueToLowerCase } from "../../utils/helpers";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
-const Textarea = ({ fieldData, name, wrapClassName, wrapId, readonly }) => {
+const Textarea = ({ fieldData, name, wrapClassName, wrapId, id, readonly }) => {
   const {
     cssClass,
     inputMaskValue,
@@ -32,7 +32,7 @@ const Textarea = ({ fieldData, name, wrapClassName, wrapId, readonly }) => {
     <InputWrapper
       errors={errors?.[name] || {}}
       inputData={fieldData}
-      labelFor={name}
+      labelFor={id}
       wrapClassName={wrapClassName}
       wrapId={wrapId}
     >
@@ -46,7 +46,7 @@ const Textarea = ({ fieldData, name, wrapClassName, wrapId, readonly }) => {
           valueToLowerCase(size),
           "textarea"
         )}
-        id={name}
+        id={id}
         maxLength={maxLength > 0 ? maxLength : undefined}
         name={name}
         placeholder={placeholder}
@@ -89,6 +89,7 @@ Textarea.propTypes = {
   name: PropTypes.string,
   wrapClassName: PropTypes.string,
   wrapId: PropTypes.string,
+  id: PropTypes.string,
   readonly: PropTypes.bool
 };
 

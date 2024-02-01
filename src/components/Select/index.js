@@ -7,8 +7,8 @@ import InputWrapper from "../../components/InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
-const Select = ({ fieldData, name, ...wrapProps }) => {
-  const { choices, cssClass, isRequired, size } = fieldData;
+const Select = ({ fieldData, name, id, ...wrapProps }) => {
+  const { choices, cssClass, isRequired, size, placeholder } = fieldData;
 
   const {
     register,
@@ -19,11 +19,11 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
     <InputWrapper
       errors={errors?.[name] || {}}
       inputData={fieldData}
-      labelFor={name}
+      labelFor={id}
       {...wrapProps}
     >
       <select
-        aria-invalid={errors}
+        aria-invalid={Boolean(errors?.[name])}
         aria-required={isRequired}
         //TODO: GF uses select2 library and classes, need to figure out how to handle here if we're mimicing their functionality
         className={clsx(
@@ -33,13 +33,18 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
           cssClass,
           valueToLowerCase(size)
         )}
-        id={name}
+        id={id}
         name={name}
         {...register(name, {
           required: isRequired && "This field is required",
           shouldUnregister: true
         })}
       >
+        {placeholder && (
+          <option value="" disabled>
+              {placeholder}
+          </option>
+        )}
         {choices.map(({ text, value }, index) => {
           return (
             <option
@@ -65,6 +70,7 @@ Select.propTypes = {
     size: PropTypes.string,
   }),
   register: PropTypes.func,
+  id: PropTypes.string,
   wrapProps: PropTypes.object,
 };
 

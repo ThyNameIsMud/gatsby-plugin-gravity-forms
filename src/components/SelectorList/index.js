@@ -9,7 +9,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
 // TODO: Enable Select All Choice
-const SelectorList = ({ fieldData, name, ...wrapProps }) => {
+const SelectorList = ({ fieldData, name, id, ...wrapProps }) => {
   const {
     choices,
     cssClass,
@@ -29,10 +29,10 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
     <InputWrapper
       errors={errors?.[name]}
       inputData={fieldData}
-      labelFor={name}
+      labelFor={id}
       {...wrapProps}
     >
-      <ul className={`gfield_${type}`} id={name}>
+      <ul className={`gfield_${type}`} id={id}>
         {choices.map(({ isSelected, text, value }, index) => {
           const choiceID = index + 1;
           return (
@@ -45,7 +45,7 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
                   valueToLowerCase(size)
                 )}
                 defaultChecked={isSelected}
-                id={`${name}_${choiceID}`}
+                id={`${id}_${choiceID}`}
                 name={name}
                 {...register(
                   name,
@@ -59,7 +59,7 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
               />
               &nbsp;
               <label
-                htmlFor={`${name}_${choiceID}`}
+                htmlFor={`${id}_${choiceID}`}
                 dangerouslySetInnerHTML={{ __html: text }}
               />
             </li>
@@ -82,6 +82,7 @@ SelectorList.propTypes = {
     type: PropTypes.string,
   }),
   name: PropTypes.string,
+  id: PropTypes.string,
   wrapProps: PropTypes.object,
 };
 

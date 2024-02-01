@@ -7,8 +7,8 @@ import InputWrapper from "../../components/InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
-const Multiselect = ({ fieldData, name, ...wrapProps }) => {
-  const { choices, cssClass, id, isRequired, size } = fieldData;
+const Multiselect = ({ fieldData, name, id, ...wrapProps }) => {
+  const { choices, cssClass, isRequired, size } = fieldData;
   const {
     register,
     formState: { errors },
@@ -18,7 +18,7 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
     <InputWrapper
       errors={errors?.[name] || {}}
       inputData={fieldData}
-      labelFor={name}
+      labelFor={id}
       {...wrapProps}
     >
       <select
@@ -30,7 +30,8 @@ const Multiselect = ({ fieldData, name, ...wrapProps }) => {
           cssClass,
           valueToLowerCase(size)
         )}
-        id={name}
+        aria-invalid={Boolean(errors?.[name])}
+        id={id}
         multiple={true}
         name={name}
         {...register(name, {
@@ -64,6 +65,7 @@ Multiselect.propTypes = {
   }),
   name: PropTypes.string,
   wrapProps: PropTypes.object,
+  id: PropTypes.string
 };
 
 export const MultiSelectField = graphql`

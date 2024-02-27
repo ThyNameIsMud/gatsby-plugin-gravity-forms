@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-gravity-forms",
-  "version": "3.1.0-p2.2.3",
+  "version": "3.1.0-p2.3.0",
   "description": "A component to take GraphQl Gravity Forms query data and return a usable form.",
   "main": "src/index.js",
   "scripts": {},
@@ -32,7 +32,8 @@
     "nanoid": "^4.0.0",
     "prop-types": "^15.8.1",
     "react-google-recaptcha": "^2.1.0",
-    "react-hook-form": "^7.33.0"
+    "react-hook-form": "^7.33.0",
+    "react-imask": "^7.4.0"
   },
   "devDependencies": {
     "eslint": "^8.18.0",

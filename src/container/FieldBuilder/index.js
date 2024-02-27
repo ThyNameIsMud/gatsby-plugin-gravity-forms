@@ -4,6 +4,7 @@ import React from "react";
 import Captcha from "../../components/Captcha";
 import Html from "../../components/Html";
 import Input from "../../components/Input";
+import Phone from "../../components/Phone";
 import Multiselect from "../../components/Multiselect";
 import Select from "../../components/Select";
 import SelectorList from "../../components/SelectorList";
@@ -116,9 +117,21 @@ const FieldBuilder = ({
       case "NUMBER":
       case "HIDDEN":
       case "DATE":
-      case "PHONE":
         return (
           <Input
+            fieldData={field}
+            key={fieldId}
+            gfId={fieldId}
+            id={inputId}
+            name={inputName}
+            wrapClassName={inputWrapperClass}
+            wrapId={wrapId}
+            readonly={readonly}
+          />
+        );
+      case "PHONE":
+        return (
+          <Phone
             fieldData={field}
             key={fieldId}
             gfId={fieldId}

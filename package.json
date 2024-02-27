@@ -32,7 +32,8 @@
     "nanoid": "^4.0.0",
     "prop-types": "^15.8.1",
     "react-google-recaptcha": "^2.1.0",
-    "react-hook-form": "^7.33.0"
+    "react-hook-form": "^7.33.0",
+    "react-imask": "^7.4.0"
   },
   "devDependencies": {
     "eslint": "^8.18.0",

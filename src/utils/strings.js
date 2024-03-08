@@ -8,6 +8,7 @@ const strings = {
         pattern: 'The format seems to be wrong.',
         emailPattern: 'This is an invalid email format.',
         phonePattern: 'This is an invalid phone number.',
+        matchEmails: 'Emails must match.',
         maxChar: {
             front: 'Need more than',
             back: 'characters.',

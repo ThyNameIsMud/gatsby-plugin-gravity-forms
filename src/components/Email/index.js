@@ -110,7 +110,7 @@ const Email = ({ fieldData, name, id, readonly, ...wrapProps }) => {
                             message: regex && strings.errors.pattern,
                         },
                         validate: {
-                            matchEmails: value => (value === emailValue) || 'Emails must match.',
+                            matchEmails: value => (value === emailValue) || strings.errors.matchEmails,
                         },
                         shouldUnregister: true
                     })}

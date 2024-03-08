@@ -6,6 +6,7 @@ import { useFormContext } from "react-hook-form";
 import InputWrapper from "../../components/InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
+import strings from "../../utils/strings";
 
 const Multiselect = ({ fieldData, name, id, ...wrapProps }) => {
   const { choices, cssClass, isRequired, size } = fieldData;
@@ -35,7 +36,7 @@ const Multiselect = ({ fieldData, name, id, ...wrapProps }) => {
         multiple={true}
         name={name}
         {...register(name, {
-          required: isRequired,
+          required: isRequired && strings.errors.required,
           shouldUnregister: true
         })}
       >

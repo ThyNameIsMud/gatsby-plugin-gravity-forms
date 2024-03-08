@@ -6,6 +6,7 @@ import { useFormContext } from "react-hook-form";
 import InputWrapper from "../../components/InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
+import strings from "../../utils/strings";
 
 const Select = ({ fieldData, name, id, ...wrapProps }) => {
   const { choices, cssClass, isRequired, size, placeholder } = fieldData;
@@ -36,7 +37,7 @@ const Select = ({ fieldData, name, id, ...wrapProps }) => {
         id={id}
         name={name}
         {...register(name, {
-          required: isRequired && "This field is required",
+          required: isRequired && strings.errors.required,
           shouldUnregister: true
         })}
       >

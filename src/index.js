@@ -24,13 +24,17 @@ import {getMatchesConditionalLogic, valueToLowerCase} from "./utils/helpers";
  * Component to take Gravity Form graphQL data and turn into
  * a fully functional form.
  * @param {mixed} data Form dataset from graphQL
+ * @param {object} presetValues Values to prefill form with
+ * @param {function} successCallback Callback on successful submission
+ * @param {function} errorCallback Callback on error submission
+ * @param {function} validationCallback Callback on validation error
  */
 const GravityFormForm = ({
   data,
-  presetValues,
-  successCallback,
-  errorCallback,
-  validationCallback
+  presetValues = {},
+  successCallback = () => {},
+  errorCallback = () => {},
+  validationCallback= () => {},
 }) => {
   const preOnSubmit = useRef();
 
@@ -87,10 +91,6 @@ const GravityFormForm = ({
     getValues,
     formState: { errors },
   } = methods;
-
-  useEffect(() => {
-    reset(defaultValues);
-  }, [defaultValues]);
 
   const [generalError, setGeneralError] = useState("");
 
@@ -268,13 +268,6 @@ GravityFormForm.propTypes = {
   data: PropTypes.object.isRequired,
   successCallback: PropTypes.func,
   presetValues: PropTypes.shape({}),
-};
-
-GravityFormForm.defaultProps = {
-  validationCallback: () => {},
-  errorCallback: () => {},
-  successCallback: () => {},
-  presetValues: {},
 };
 
 export default GravityFormForm;

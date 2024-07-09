@@ -5,7 +5,7 @@ import {
     ApolloProvider,
     InMemoryCache,
 } from "@apollo/client";
-import { createUploadLink } from "apollo-upload-client";
+import createUploadLink from "apollo-upload-client/createUploadLink.mjs";
 
 export const wrapRootElement = ({ element }, { url }) => {
     // Add error handling if no URL passed.

@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import React, {
-  forwardRef,
   useState,
   useRef,
   useEffect,
@@ -13,8 +12,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import InputWrapper from "../InputWrapper";
 import withConditionalLogic from "../../Hoc/withConditionalLogic";
 
-const Captcha = forwardRef(
-  ({ captchaTheme, fieldData, name, settings, ...wrapProps }, ref) => {
+const Captcha = ({ captchaTheme, fieldData, name, settings, preOnSubmitRef, ...wrapProps }) => {
     const { register, errors, setValue } = useFormContext();
 
     if (!settings?.publicKey) {
@@ -44,7 +42,7 @@ const Captcha = forwardRef(
     const captchaRef = useRef(null);
     const [isLoaded, setLoaded] = useState(false);
 
-    useImperativeHandle(ref, () => ({
+    useImperativeHandle(preOnSubmitRef, () => ({
       recaptcha: async () => {
         if (settings?.type === "INVISIBLE") {
           const token = await captchaRef.current.executeAsync();
@@ -71,6 +69,7 @@ const Captcha = forwardRef(
         errors={errors?.[`g-recaptcha-response`]}
         inputData={fieldData}
         labelFor={name}
+        {...{ preOnSubmitRef }}
         {...wrapProps}
       >
         <ReCAPTCHA
@@ -89,8 +88,7 @@ const Captcha = forwardRef(
         />
       </InputWrapper>
     );
-  }
-);
+  };
 
 Captcha.propTypes = {
   captchaTheme: PropTypes.string,

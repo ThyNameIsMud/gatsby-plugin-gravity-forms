@@ -20,6 +20,7 @@ const InputWrapper = ({
   labelFor,
   wrapClassName,
   wrapId,
+  preOnSubmitRef
 }) => {
   const joinedLabel = `${label}${
     isRequired ? '<span class="gfield_required">*</span>' : ""
@@ -33,6 +34,7 @@ const InputWrapper = ({
         cssClass
       )}
       id={wrapId}
+      ref={preOnSubmitRef}
     >
       {type !== 'HTML'
       && type !== 'HIDDEN'

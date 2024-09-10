@@ -96,7 +96,7 @@ const FieldBuilder = ({
             gfId={fieldId}
             key={fieldId}
             name={inputName}
-            ref={preOnSubmit}
+            preOnSubmitRef={preOnSubmit}
             settings={settings?.recaptcha}
             wrapClassName={inputWrapperClass}
           />

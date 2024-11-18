@@ -54,3 +54,10 @@ export const getMatchesConditionalLogic = (values, rules, logicType) =>
         some(rules, ({ fieldId, operator, value }, i) => {
           return convertConditionalLogic(values[i], operator, value);
         })
+
+export const getQueryParam = (name) => {
+  if (typeof window !== 'undefined') {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+}

@@ -18,7 +18,7 @@ import {
 } from "./utils/manageFormData";
 import submitMutation from "./submitMutation";
 import formatPayload from "./utils/formatPayload";
-import {getMatchesConditionalLogic, valueToLowerCase} from "./utils/helpers";
+import {getMatchesConditionalLogic, valueToLowerCase, getQueryParam} from "./utils/helpers";
 
 /**
  * Component to take Gravity Form graphQL data and turn into
@@ -66,16 +66,19 @@ const GravityFormForm = ({
   const wasSuccessfullySubmitted = hasBeenSubmitted && !haveFieldErrors;
 
   const defaultValues = useMemo(() =>
-      reduce(formFields?.nodes, (result, { databaseId, defaultValue, type, placeholder }) => {
-        const inputName = `input_${databaseId}`;
-        if (presetValues[inputName]) {
-          result[inputName] = presetValues[inputName];
+      reduce(formFields?.nodes, (result, { databaseId, defaultValue, type, placeholder, canPrepopulate, inputName }) => {
+        const inputDBName = `input_${databaseId}`;
+        if (presetValues[inputDBName]) {
+          result[inputDBName] = presetValues[inputDBName];
         } else if (defaultValue) {
-            result[inputName] = defaultValue;
+            result[inputDBName] = defaultValue;
         } else if (type === 'SELECT' && placeholder) {
-          result[inputName] = "";
+          result[inputDBName] = "";
         } else {
-          result[inputName] = null;
+          result[inputDBName] = null;
+        }
+        if (canPrepopulate && inputName) {
+          result[inputDBName] = getQueryParam(inputName);
         }
         return result;
       }, {}), [formFields, presetValues]);

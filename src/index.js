@@ -78,7 +78,10 @@ const GravityFormForm = ({
           result[inputDBName] = null;
         }
         if (canPrepopulate && inputName) {
-          result[inputDBName] = getQueryParam(inputName);
+          const valueFromQuery = getQueryParam(inputName);
+          if (valueFromQuery) {
+            result[inputDBName] = getQueryParam(inputName);
+          }
         }
         return result;
       }, {}), [formFields, presetValues]);

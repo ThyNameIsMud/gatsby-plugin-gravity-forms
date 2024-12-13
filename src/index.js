@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import { keys, find, reduce, map } from "lodash";
+import { keys, find, reduce, map, isEmpty } from "lodash";
 import { graphql, navigate } from "gatsby";
 import { useMutation } from "@apollo/client";
 import { useForm, FormProvider } from "react-hook-form";
@@ -68,7 +68,7 @@ const GravityFormForm = ({
   const defaultValues = useMemo(() =>
       reduce(formFields?.nodes, (result, { databaseId, defaultValue, type, placeholder, canPrepopulate, inputName }) => {
         const inputDBName = `input_${databaseId}`;
-        if (presetValues[inputDBName]) {
+        if (!isEmpty(presetValues) && presetValues[inputDBName]) {
           result[inputDBName] = presetValues[inputDBName];
         } else if (defaultValue) {
             result[inputDBName] = defaultValue;
